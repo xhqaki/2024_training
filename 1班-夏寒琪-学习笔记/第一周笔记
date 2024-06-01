@@ -1,1 +1,235 @@
+# 5.25
+完成虚拟机Linux系统安装
+# 5.26
+在Linux系统上装好了Git
+# 5.27 Git学习
+### 1.四个区域
+1.工作区：在电脑上实际能看到的目录  
+2.暂存区：又称索引，用来存放**未提交**的内容  
+3.本地仓库：Git在本地的版本库，仓库信息存储在.git这个隐藏目录中  
+4.远程仓库：托管在远程服务器上的仓库，常用的有Github，Gitee等
+### 2.文件状态
+main/master  默认主分支，目前用main较多  
+origion  默认远程仓库  
+HEAD  指向当前分支的指针  
+HEAD^  上一个版本  
+HEAD~  上四个版本
+### 3.基本操作命令
+git init <>   
+初始化一个Git仓库，执行完该命令后会生成一个.git命令，若要使指定目录成为Git仓库，则在<>中写上指定目录名称  
+git add <file>  
+将file添加到暂存区，如果要添加所有file到暂存区可以写git add . ，如果要将以.txt结尾的文件全部加入暂存区可以写git add *.txt，其他类型的文件也一样  
+git commit -m" 注释"  
+提交暂存区的文件到本地仓库，注意git commit -am" 注释" 是提交所有已修改的文件到本地仓库，即省略git add这一步骤  
+git clone  
+从现有的Git仓库中拷贝项目，可以将github中的仓库复制过来  
+git reset  
+表示回退版本，重置当前分支的HEAD为之前的某个提交，并删除所有之后的提交。回退有三个参数，分别是soft，hard，mixed。soft表示重置暂存区，hard表示重置工作区和暂存区，mixed表示重置工作区。  
+git mv <file> <new-file>  
+移动一个文件到新的位置  
+git rm <file>  
+从工作区和暂存区删除一个文件，并且将这次删除放进暂存区  
+git diff  
+比较文件的不同，即暂存区和工作区的差异  
+git checkout <file> <commit-id>  
+恢复一个文件到之前的版本，也可表示分支切换，为避免混淆，现在分支切换用git switch  
+git restore  
+恢复或撤销文件的更改  
+git status  
+查看当前分支的状态，显示有变更的文件，列出还未提交的新的或修改的文件  
+git log   
+查看提交记录，用git log --oneline可以看简洁版本  
+git pull  
+拉取下载远程代码并合并  
+git push  
+上传远程代码并合并  
+git remote  
+远程仓库操作  
+git fecth  
+从远程获取代码库
+### 4.分支管理
+一个分支代表一条独立的开发线，使用分支意味着可以从开发主线上分离开，不影响主线的同时继续进行开发工作。
+#### 4.1相关命令
+git branch <branchname>  
+创建分支  
+git checkout/switch <branchname>  
+切换分支  
+git merge  
+合并分支，将任何分支合并到主分支。合并后可以用git branch -d(branchname)来删除分支，合并前不能用该命令删除分支，但可以将d替换成D来强制对分支进行删除。
+合并时有可能会出现合并冲突，即在将不同来源的修改合并到主分支时发生的冲突，这个时候需要手动修改代码。  
+git rebase  
+这也是一个合并分支的代码，这个命令会将分支上的提交提取到，然后再把提取到的提交指向被合并的最新提交上。https://blog.csdn.net/weixin_42310154/article/details/119004977 这个网站上有通俗易懂的解释。  
+# 5.28 Linux系统学习
+在Linux中，可以用ll或ls -l来显示文件属性和文件所属的用户和组，输出的第一个字符代表不同的意义。详细解释如下所示：  
+当为 d 则是目录  
+当为 - 则是文件  
+若是 l 则表示为链接文档(link file)  
+若是 b 则表示为装置文件里面的可供储存的接口设备(可随机存取装置)  
+若是 c 则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)  
+后面的九个字符可以看作三个三个一组，分别表示该文件对各个对象的权限。第一组是该文件的所有者的权限，第二组表示同组用户对该文件的权限，第三组就是其他用户的权限。修改权限可以用chmod命令(change mode)，改权限时可以将三种权限看作与数字一一对应，即r-4,w-2,x-1，所以将修改file1.txt对三个对象的权限为rwx时可以写作chmod 777 file1.txt。别的权限可以相加后进行对应数字更改。 若是只对文件所有者的权限进行更改，可以写为chmod u+x file1.txt，这条语句的意思是对文件所有者开放file1.txt文件的执行权限。
+### 1.文件管理基本命令
+chown(change owner)表示更改文件所有者  
+chgrp(change group)即表示更改文件属组  
+chmod除了上面讲到的用法，还可以写作chmod +r/w/x file1.txt，表示增加某一种权限，减少权限即将命令中的+变成-。  
+### 2.磁盘管理命令
+df:列出文件系统的整体磁盘使用量，检查文件系统的磁盘空间占用情况，有多个参数，具体参数解释如下所示：  
+-h：以易读的 KB、MB、GB 等方式显示输出结果
+-T：显示文件系统的类型，连同该partition的filesystem名称也列出。
+-t <文件系统类型>：只显示指定类型的文件系统。
+-i：显示 inode 使用情况。
+-H：该参数是 -h 的变体，但是使用 1000 字节作为基本单位而不是 1024 字节。以M=1000K取代m=1024K
+-k：这个选项会以 KB 作为单位显示磁盘空间使用情况。
+-a：该参数将显示所有的文件系统，包括虚拟文件系统，例如 proc、sysfs 等。如果没有使用该选项，默认情况下，df 命令不会显示虚拟文件系统。
+du:检查磁盘空间使用量，对文件和目录磁盘使用的空间进行查看  
+fdisk：进行分区  
+### 3.vi相关用法
+可以用i,a,o进行插入，大写的I,A,O也可以插入，意义有一些不一样。i表示从当前光标前插入，而I表示从句首开始插入；a表示从当前光标后插入，A表示从句末插入；o表示在下面插入新的一行，O表示在上面插入新的一行。  
+yy表示复制，p表示粘贴，前面加数字可以表示复制具体数量的几行或粘贴几遍；dd表示删除当前行。  
+set number可以在每一行前面加上行号，set nonumber可以取消行号。  
+### 4.shell语句生成小游戏实例
+```shell
+#!/bin/bash
+#表示用bash语言解释
+echo "随机生成一个1-10之间的数字"
+number=`shuf -i 1-10 -n 1` #随机生成一个数字
+echo "请输入你猜的数字"
+read guess
+while [[$guess -ne $number]]
+do
+	if [[$guess -eq $number]]; then
+		echo "猜对了"
+	elseif [[$guess -lt $number]]; then
+		echo "猜小了"
+	else
+		echo"猜大了"  
+	fi
+done
+```
 
+### 总结
+自己跑了一遍上面用到的代码，并尝试用nano编辑器跟随教程写了一个有关条件语句的小游戏。个人感觉vi比nano难上手，nano相对来说简单很多。主要是vi插入后需要用esc退出，目前还没有习惯，后续会继续练习。
+# 5.29
+### 1.docker安装
+在ubuntu系统上成功安装docker
+### 2.mysql容器启动
+```shell
+docker pull mysql #拉取MySQL版本
+docker run -p 3306:3306 --name mysql \
+-v /mydata/mysql/log:/var/log/mysql \
+-v /mydata/mysql/data:/var/lib/mysql \
+-v /mydata/mysql/conf:/etc/mysql \
+-e MYSQL_ROOT_PASSWORD=root \
+-d mysql:latest #获取最新版
+docker ps -a #查看是否成功安装
+docker exec -it mysql bash #进入MySQL命令
+mysql -u root -p
+	输入密码：
+```
+退出后重新进入MySQL时需要`docker start mysql`来启动MySQL容器再输入进入MySQL命令。  
+mysql增删查改命令已熟悉，没有过多练习。  
+### 3.Redis容器启动
+```shell
+docker pull redis #拉取Redis镜像  
+# 创建目录
+mkdir -p /home/redis/conf
+# 创建文件
+touch /home/redis/conf/redis.conf
+# 创建Redis容器：
+docker run --name redis -p 6379:6379 \
+-v /home/redis/data:/data \
+-v /home/redis/conf/redis.conf:/etc/redis/redis.conf \
+-d redis:bullseye redis-server /etc/redis/redis.conf 
+#通过 Docker 命令进入 Redis 容器内部
+docker exec -it redis /bin/bash
+docker exec -it redis bash
+#进入 Redis 控制台
+redis-cli
+# 或者也可以直接通过Docker Redis 命令进入Redis控制台 (上面两个命令的结合)
+docker exec -it redis redis-cli
+```
+### 4.Redis相关指令
+```Redis
+#设置键值对
+set name<键名> xhq<键值> #以下都以键name来举例子
+get name #这里会输出xhq，注意Redis中的键区分大小写，且输出的是字符串
+del name #删除name键
+exists name #判断键是否存在
+keys * #查找所有的键，若是keys *me是查找以me结尾的键
+flushall #删除所有的键
+expire name #设置键过期时间
+ttl name #查询键过期时间，过期后查询不到对应的值
+####list相关
+lpush是往list里增加元素，list是有序地
+lpush letter a #往list letter头部添加a字母，也可以同时添加多个元素，用空格隔开即可，rpush是添加到尾部
+lrange letter 0 -1 #0是起始位置，-1是结束位置，这句命令是获取letter中所有元素
+rpop letter #删除最后一个元素，会返回被删除的元素，也可以删除多个元素，在后面加上数字即可，lpop同理
+lpop letter #删除第一个元素
+llen letter #查询list长度
+ltrim letter 1 3 #删除除索引位置1-3之外的元素，注意索引从0开始
+####set相关
+sadd course Redis #往set course中添加元素Redis
+smembers course #查看course中的元素
+sismember course Redis #判断Redis在不在course中，若在则返回“1”，若否则为“0”  
+srem course Redis #将Redis中course中删除
+####sortedset/zset相关
+zadd result 680 清华 670 北大 660 浙大 650 复旦 #表示向有序集合中添加元素
+zrange result 0 -1 [withscores] #没有中括号时只会输出学校名称，有中括号后分数也会输出
+zscore result 清华 #查看清华的分数
+zrank result  清华 #查询清华分数排名，这里是从小到大排序所以会返回3，因为是从0开始排序，如果要从大到小排名用`zrevrank result 清华`，会返回0，即第一名
+####hash相关
+#hash是键值对的集合
+hset person name xhq #往哈希表person里添加name为xhq的元素
+hset person age 22 #添加age为22的元素
+hget person name #会返回xhq
+hget person age #会返回22
+hgetall person #会返回name xhq age 22，是成对出现的name和age是键，xhq和22是值
+hdel person age #删除键值对中的age
+hexists person name #查看键name是否存在
+```
+注意：1.list中元素可以重复，而set中元素不可以重复  
+      2.操作list的指令前面都有"l"，操作set的指令前面都有"s"，zset和hash也一样  
+# 5.30 docker-compose
+docker-compose已安装  
+docker-compose.yml文件配置
+```shell
+# docker-compose.yml文件的版本
+version: "3"
+# 管理的服务
+services:
+  redis:
+    # 指定镜像
+    image: redis:4
+    ports:
+      # 端口映射
+      - 6379:6379
+    volumes:
+      # 目录映射
+      - "${REDIS_DIR}/conf:/usr/local/etc/redis"
+      - "${REDIS_DIR}/data:/data"
+    command:
+      # 执行的命令
+      redis-server
+
+  mysql:
+    image: mysql:5.6
+    ports:
+      - 3306:3306
+    volumes:
+      - "${MYSQL_DIR}/data:/var/lib/mysql"
+      - "${MYSQL_DIR}/conf.d:/etc/mysql/conf.d"
+    environment:
+      # 环境变量
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+其中  
+# .env文件内容
+# redis
+REDIS_DIR=./redis
+
+# mysql
+MYSQL_DIR=./mysql
+MYSQL_ROOT_PASSWORD=123456
+```
+用docker cpmpose启动MySQL时会说端口被占用导致开启失败，但用docker开是正常的  
+用docker compose和docker开启Redis都没有问题  
+  
+MySQL命令和Redis命令已熟悉  
