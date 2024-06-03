@@ -1,0 +1,12 @@
+invitation_list=["alex","penny","luis"]
+invitation="我可以和你一起吃饭吗？"
+print(invitation+invitation_list[0])
+print(invitation+invitation_list[1])
+print(invitation+invitation_list[2])
+#假设luis不能赴约，要删掉luis后添加vincent，luis的索引是2
+print(invitation_list[2]+"不能赴约")
+invitation_list[2]="vincnet"
+print(invitation_list)
+print(invitation+invitation_list[0])
+print(invitation+invitation_list[1])
+print(invitation+invitation_list[2])
