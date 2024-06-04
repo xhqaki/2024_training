@@ -31,6 +31,8 @@ list.sort(reverse=True) #永久反向排序
 list.reverse() #永久反向排序  
 sorted(list) #暂时正向排序  
 sorted(list,reverse=True) #暂时反向排序
-
+# 6.4
+## ch_4
+### 
 
 
