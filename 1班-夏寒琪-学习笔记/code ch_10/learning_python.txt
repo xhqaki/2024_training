@@ -1,0 +1,2 @@
+In python you can make some games
+In python you can do calculations
