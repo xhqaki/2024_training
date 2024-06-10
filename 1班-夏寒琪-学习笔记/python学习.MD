@@ -52,7 +52,7 @@ list[i:n]表示取list中第i+1位到第n+1位
 ## ch_5
 ### if语句
 if 条件：  
-      执行语句  
+  \t    执行语句  
 elif 条件：  
       执行语句  
 else ：  
