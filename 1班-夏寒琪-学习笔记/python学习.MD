@@ -35,8 +35,10 @@ sorted(list,reverse=True) #暂时反向排序
 ## ch_4
 ### 循环
 基本语法：  
+```python
 for 名字 in 列表：  
      print()  
+```
 在循环中需要注意缩进的问题。  
 ### range()
 range(1，5)返回1到4，可给range()添加步长，比如range(1，6，2)会返回1，3，5。  
@@ -51,17 +53,21 @@ list[i:n]表示取list中第i+1位到第n+1位
 元组由圆括号来标识，元素不可修改，但能重新进行整体赋值  
 ## ch_5
 ### if语句
+```python
 if 条件：  
-  \t    执行语句  
+      执行语句  
 elif 条件：  
       执行语句  
 else ：  
       执行语句  
+```
 ### 检查列表非空
+```python
 if list：
     执行语句
 else
     print("这是一个空列表")
+```
 # 6.5
 ## ch_6
 ### 字典
@@ -82,8 +88,10 @@ for value in alien.values()
 ## ch_7
 ### while循环  
 基本语句：  
+```python
 while 条件/标志 :  
      执行语句  
+```
 如果break条件满足则跳出循环，如果continue条件满足则直接进行新一轮循环  
 若要删除列表中一个特定的字符串，可以用这样的代码：
 ```python
