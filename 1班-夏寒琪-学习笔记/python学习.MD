@@ -117,5 +117,38 @@ greeting()  #调用函数
 
 ## ch_9 
 ### 类
+```python
+ class Dog:
+"""一次模拟小狗的简单尝试 """
+     def __init__(self, name, age):##name和age自动传入self
+     """初始化属性name和 age""" 
+          self.name = name
+          self.age = age
+     def sit(self):
+     """模拟狗狗收到命令时坐下 """
+          print(f"{self.name} is now sitting.")
+     def roll_over(self):
+     """模拟狗狗收到命令时打滚 """ 
+          print(f"{self.name} rolled over!")
+##创建实例
+my_dog=Dog('Willie',6) #创建狗类实例
+my_dog.sit()
+my_dog.roll_over() #调用类里的函数
+```
+### 继承
+```python
+class ElectricCar(Car): #已经有一个Car类，且调用了这个类
+    def __init__(self, make, model, year):
+     """先初始化父类属性，再初始化特有属性"""
+        super().__init__(make, model, year) #继承父类属性
+        self.battery_size = 40 #初始化特有属性
+    def describe_battery(self):
+     """打印描述电池容量的信息 """
+          print(f"This car has a {self.battery_size}-kWh battery.")
+#创建实例
+my_leaf = ElectricCar('nissan', 'leaf', 2024) 
+print(my_leaf.get_descriptive_name()) #括号里调用了父类函数
+my_leaf.describe_battery()
+```
 
 
