@@ -1,1 +1,1 @@
-已在python中连接mysql，增删查改练习已完成
+已在python中连接mysql，增删查改练习已完成。今天用的是pymysql库连接，明天学习sqlalchemy
