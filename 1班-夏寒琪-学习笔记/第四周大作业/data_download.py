@@ -18,7 +18,7 @@ with requests.get(url, stream=True) as r:
             f.write(chunk)
 
 # 解压文件
-# 假设解压到F盘的同一目录下，创建一个新的文件夹来存放解压后的文件
+# 解压到F盘的同一目录下，创建一个新的文件夹来存放解压后的文件
 unzip_dir = Path('F:/1/single-vehicle-side-example_16066909684506624')
 unzip_dir.mkdir(parents=True, exist_ok=True)
 
