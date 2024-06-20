@@ -29,10 +29,10 @@ DATABASE_URL = "mysql+pymysql://root:123456@localhost/test"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-app = FastAPI()
 # 我的图片存储image的子目录下
 IMAGES_DIR = Path(__file__).parent / "image"
 
+app = FastAPI()
 
 # 使用FastAPI定义一个GET请求的路由，用于下载图片文件。
 @app.get("/download/{filename:path}")
