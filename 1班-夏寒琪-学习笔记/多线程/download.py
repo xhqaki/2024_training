@@ -21,7 +21,7 @@ def main():
     assert len(urls) == len(filenames)
 
     threads = []
-    # 若上面的urls是多个网址，则会进入循环
+    # 若上面的urls是多个网址，则会进入循环，这里只写了一个网址
     for url, filename in zip(urls, filenames):
         t = threading.Thread(target=download_page, args=(url, filename))
         t.start()
